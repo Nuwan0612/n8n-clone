@@ -96,7 +96,8 @@ export function RegisterForm(){
                     type="button"
                     disabled={isPending}
                   >
-                      Continue with GitHub
+                    <Image src='/github.svg' alt="GitHub" width={20} height={20}/>
+                    Continue with GitHub
                   </Button>
                   <Button 
                     variant={'outline'}
@@ -104,7 +105,8 @@ export function RegisterForm(){
                     type="button"
                     disabled={isPending}
                   >
-                      Continue with Google
+                    <Image src='/google.svg' alt="Google" width={20} height={20}/>
+                    Continue with Google
                   </Button>
                 </div>
                 <div className="grid gap-6">
