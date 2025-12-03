@@ -4,3 +4,6 @@ procs:
 
   next: 
     cmd: ["npm.cmd", "run", "dev"]
+
+  studio:
+    cmd: ["npm.cmd", "run", "studio"]
