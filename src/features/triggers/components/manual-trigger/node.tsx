@@ -8,7 +8,7 @@ export const ManualTriggerNode = memo((props: NodeProps) => {
 
   const [dialogOpen, setDialogOpen] = useState(false)
   const handleOpenSettings = () => setDialogOpen(true)
-  const nodeStatus = "success"
+  const nodeStatus = "initial"
 
   return(
     <>
