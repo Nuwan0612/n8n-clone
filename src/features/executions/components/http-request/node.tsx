@@ -8,6 +8,7 @@ import { HttpRequestFormValues, HttpRequestDialog } from "./dialog"
 import { methods } from "better-auth/client"
 
 type HttpRequestNodeData = {
+  variableName?: string
   endpoint?: string
   method?: "GET" | 'POST' | "PUT" | "PATCH" | "DELETE"
   body?: string
