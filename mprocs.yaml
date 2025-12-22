@@ -7,3 +7,6 @@ procs:
 
   studio:
     cmd: ["npm.cmd", "run", "studio"]
+
+  ngrok: 
+    cmd: ["npm.cmd", "run", "ngrok:dev"]
