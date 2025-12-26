@@ -53,7 +53,19 @@ const executionNodes: NodeTypeOption[] = [
     label: "HTTP Request",
     description: "Makes an HTTP request",
     icon: GlobeIcon
-  }
+  },
+  {
+    type: NodeType.GEMINI,
+    label: "Gemini",
+    description: "Use Google Gemini to generate text",
+    icon: "/gemini.svg"
+  },
+  {
+    type: NodeType.GROQ,
+    label: "Groq",
+    description: "Use Groq to access multiple generative ai models",
+    icon: "/groq.png"
+  },
 ]
 
 interface NodeSelectorProps {
