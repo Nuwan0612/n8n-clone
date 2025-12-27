@@ -24,6 +24,7 @@ model User {
   sessions      Session[]
   accounts      Account[]
   workflows     Workflow[]
+  credentials    Credential[]
 
   @@unique([email])
   @@map("user")
@@ -77,6 +78,29 @@ model Verification {
   @@map("verification")
 }
 
+enum CredentialType {
+  OPENAI
+  ANTHROPIC
+  GEMINI
+  GROQ
+}
+
+model Credential {
+  id String @id @default(cuid())
+  name String
+  value String
+  type CredentialType
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  Node Node[]
+}
+
+
 model Workflow {
   id String @id @default(cuid())
   name String
@@ -90,7 +114,7 @@ model Workflow {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-enum NodeType{
+enum NodeType {
   INITIAL
   MANNUAL_TRIGGER
   HTTP_REQUEST
@@ -106,6 +130,9 @@ model Node {
   id String @id @default(cuid())
   workflowId String
   worflow Workflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+
+  credentialId String?
+  credntial Credential? @relation(fields: [credentialId], references: [id])
 
   name String
   type NodeType

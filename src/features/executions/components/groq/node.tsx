@@ -10,6 +10,7 @@ import { GROQ_CHANNEL_NAME } from "@/inngest/channels/groq"
 
 type GroqNodeData = {
   variableName?: string
+  credentialId?: string
   model?: string
   systemPrompt?: string
   userPrompt?: string
