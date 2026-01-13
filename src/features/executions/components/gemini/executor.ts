@@ -5,6 +5,7 @@ import { createGoogleGenerativeAI } from "@ai-sdk/google"
 import Handlebars from "handlebars"
 import { geminiChannel } from "@/inngest/channels/gemini";
 import prisma from "@/lib/db";
+import { use } from "react";
 
 Handlebars.registerHelper("json", (context) => {
   const jsonString = JSON.stringify(context, null, 2)
@@ -24,6 +25,7 @@ type GeminiData = {
 export const geminiExecutor: NodeExecutor<GeminiData> = async ({
   data,
   nodeId,
+  userId,
   context,
   step,
   publish
@@ -77,12 +79,21 @@ export const geminiExecutor: NodeExecutor<GeminiData> = async ({
   const credential = await step.run("get-credential", () => {
     return prisma.credential.findUnique({
       where: {
-        id: data.credentialId
+        id: data.credentialId,
+        userId
       }
     })
   })
 
   if(!credential){
+
+    await publish(
+      geminiChannel().status({
+        nodeId,
+        status: "error"
+      })
+    )
+
     throw new NonRetriableError("Gemini node: Credential not found")
   }
 

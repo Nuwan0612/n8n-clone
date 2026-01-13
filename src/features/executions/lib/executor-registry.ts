@@ -6,6 +6,8 @@ import { googleFormTriggerExecutor } from "@/features/triggers/components/google
 import { stripeTriggerExecutor } from "@/features/triggers/components/stripe-trigger/executor";
 import { geminiExecutor } from "../components/gemini/executor";
 import { groqExecutor } from "../components/groq/executor";
+import { discordExecutor } from "../components/discord/executor";
+import { slackExecutor } from "../components/slack/executor";
 
 
 export const executorRegistry: Record<NodeType, NodeExecutor> = {
@@ -18,6 +20,8 @@ export const executorRegistry: Record<NodeType, NodeExecutor> = {
   [NodeType.ANTHROPIC]: geminiExecutor,
   [NodeType.OPENAI]: geminiExecutor,
   [NodeType.GROQ]: groqExecutor,
+  [NodeType.DISCORD]: discordExecutor,
+  [NodeType.SLACK]: slackExecutor,
 
 }
 
