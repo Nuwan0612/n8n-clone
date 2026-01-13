@@ -24,6 +24,7 @@ type GroqData = {
 export const groqExecutor: NodeExecutor<GroqData> = async ({
   data,
   nodeId,
+  userId,
   context,
   step,
   publish
@@ -77,12 +78,21 @@ export const groqExecutor: NodeExecutor<GroqData> = async ({
   const credential = await step.run("get-credential", () => {
     return prisma.credential.findUnique({
       where: {
-        id: data.credentialId
+        id: data.credentialId,
+        userId
       }
     })
   })
 
   if(!credential){
+
+    await publish(
+      groqChannel().status({
+        nodeId,
+        status: "error"
+      })
+    )
+
     throw new NonRetriableError("Groq node: Credential not found")
   }
 

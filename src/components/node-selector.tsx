@@ -66,6 +66,19 @@ const executionNodes: NodeTypeOption[] = [
     description: "Use Groq to access multiple generative ai models",
     icon: "/groq.png"
   },
+  {
+    type: NodeType.DISCORD,
+    label: "Discord",
+    description: "Use Discord to send messages",
+    icon: "/discord.svg"
+  },
+  {
+    type: NodeType.SLACK,
+    label: "Slack",
+    description: "Use Slack to send messages",
+    icon: "/slack.svg"
+  },
+   
 ]
 
 interface NodeSelectorProps {
